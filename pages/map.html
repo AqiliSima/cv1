@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="sk">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Sima Aqili | Mapa</title>
+
+    <meta
+        name="description"
+        content="Interaktívna mapa Simy Aqili so školou, približným bydliskom a možnosťou pridávať vlastné body."
+    >
+
+    <meta
+        property="og:title"
+        content="Sima Aqili | Mapa"
+    >
+
+    <meta
+        property="og:description"
+        content="Interaktívna mapa so školou, približným bydliskom a vlastnými bodmi."
+    >
+
+    <meta
+        property="og:image"
+        content="../img/me.png"
+    >
+
+    <link
+        rel="icon"
+        href="../favicon.ico"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/styles.css"
+    >
+
+    <!-- Leaflet CSS -->
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+</head>
+
+
+<body>
+
+    <a
+        class="skip-link"
+        href="#main-content"
+    >
+        Preskočiť na hlavný obsah
+    </a>
+
+
+    <!-- Header -->
+
+    <header class="site-header">
+
+        <div class="container header__inner">
+
+            <a
+                class="brand"
+                href="../index.html"
+                aria-label="Sima Aqili - Profil"
+            >
+
+                <span class="brand__monogram">
+
+                    <img
+                        src="../favicon.ico"
+                        alt=""
+                        aria-hidden="true"
+                    >
+
+                </span>
+
+
+                <span class="brand__text">
+
+                    <strong>
+                        Sima Aqili
+                    </strong>
+
+                    <span>
+                        Študentka aplikovanej informatiky,
+                        zaujímam sa o webové technológie
+                        a programovanie.
+                    </span>
+
+                </span>
+
+            </a>
+
+
+            <button
+                class="nav-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="site-navigation"
+            >
+
+                <span class="nav-toggle__line"></span>
+                <span class="nav-toggle__line"></span>
+                <span class="nav-toggle__line"></span>
+
+                <span class="visually-hidden">
+                    Otvoriť navigáciu
+                </span>
+
+            </button>
+
+
+            <nav
+                class="site-nav"
+                id="site-navigation"
+                aria-label="Hlavná navigácia"
+            >
+
+                <ul class="site-nav__list">
+
+                    <li class="site-nav__item">
+
+                        <a
+                            class="site-nav__link"
+                            href="../index.html"
+                        >
+                            Profil
+                        </a>
+
+                    </li>
+
+
+                    <li class="site-nav__item">
+
+                        <a
+                            class="site-nav__link"
+                            href="cv.html"
+                        >
+                            Životopis
+                        </a>
+
+                    </li>
+
+
+                    <li class="site-nav__item">
+
+                        <a
+                            class="site-nav__link"
+                            href="workspace.html"
+                        >
+                            Pracovné prostredie
+                        </a>
+
+                    </li>
+
+
+                    <li class="site-nav__item">
+
+                        <a
+                            class="site-nav__link"
+                            href="schedule.html"
+                        >
+                            Rozvrh
+                        </a>
+
+                    </li>
+
+
+                    <li class="site-nav__item">
+
+                        <a
+                            class="site-nav__link site-nav__link--active"
+                            href="map.html"
+                            aria-current="page"
+                        >
+                            Mapa
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- Main content -->
+
+    <main id="main-content">
+
+        <section class="map-page">
+
+            <div class="container">
+
+                <div class="map__intro">
+
+                    <p class="eyebrow">
+                        Kde ma nájdete
+                    </p>
+
+                    <h1>
+                        Interaktívna mapa
+                    </h1>
+
+                    <h2>
+                        Moja škola a približné bydlisko
+                    </h2>
+
+                    <p>
+                        Na mape nájdete moju školu a približné miesto
+                        môjho bydliska. Kliknutím na mapu môžete pridať
+                        vlastný bod a následne vypočítať jeho vzdialenosť
+                        od školy alebo bydliska.
+                    </p>
+
+                </div>
+
+
+                <!-- Map -->
+
+                <section class="map__section">
+
+                    <h2>
+                        Mapa Bratislavy
+                    </h2>
+
+                    <p class="map__instruction">
+                        Kliknutím na ľubovoľné miesto na mape pridáte nový bod.
+                    </p>
+
+
+                    <div
+                        class="map__container"
+                        id="map"
+                        role="application"
+                        aria-label="Interaktívna mapa Bratislavy"
+                    >
+                    </div>
+
+                </section>
+
+
+                <!-- Map controls -->
+
+                <section class="map__controls">
+
+                    <h2>
+                        Práca s bodmi
+                    </h2>
+
+
+                    <div class="map__control-group">
+
+                        <label for="point-name">
+                            Názov nového bodu
+                        </label>
+
+                        <input
+                            id="point-name"
+                            type="text"
+                            name="point-name"
+                            placeholder="Napríklad Kaviareň"
+                        >
+
+                        <button
+                            id="save-point"
+                            class="button"
+                            type="button"
+                        >
+                            Uložiť bod
+                        </button>
+
+                    </div>
+
+
+                    <div class="map__control-group">
+
+                        <label for="point-list">
+                            Vyberte bod
+                        </label>
+
+                        <select
+                            id="point-list"
+                            name="point-list"
+                        >
+
+                            <option value="">
+                                Vyberte bod
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="map__control-group">
+
+                        <label for="destination">
+                            Cieľ
+                        </label>
+
+                        <select
+                            id="destination"
+                            name="destination"
+                        >
+
+                            <option value="school">
+                                Škola – FEI STU
+                            </option>
+
+                            <option value="home">
+                                Bydlisko
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <button
+                        id="calculate-distance"
+                        class="button"
+                        type="button"
+                    >
+                        Vypočítať vzdialenosť
+                    </button>
+
+
+                    <p
+                        id="map-message"
+                        class="map__message"
+                        role="status"
+                        aria-live="polite"
+                    >
+                        Zatiaľ nemáte pridané žiadne vlastné body.
+                    </p>
+
+
+                    <div
+                        id="distance-result"
+                        class="map__result"
+                        aria-live="polite"
+                    >
+                    </div>
+
+                </section>
+
+
+                <!-- Added points -->
+
+                <section class="map__points">
+
+                    <h2>
+                        Moje pridané body
+                    </h2>
+
+                    <div
+                        id="saved-points"
+                        class="map__points-list"
+                    >
+
+                        <p class="map__empty">
+                            Zatiaľ nemáte pridané žiadne body.
+                        </p>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer class="site-footer">
+
+        <div class="container site-footer__inner">
+
+            <address class="site-footer__contact">
+
+                <strong>
+                    Sima Aqili
+                </strong>
+                <br>
+
+                Bratislava, Slovensko
+                <br>
+
+                <a href="mailto:sima.aqili@gmail.com">
+                    sima.aqili@gmail.com
+                </a>
+                <br>
+
+                <a href="tel:+421900000000">
+                    +421 900 000 000
+                </a>
+
+            </address>
+
+
+            <p class="site-footer__sources">
+
+                <a
+                    href="https://www.openstreetmap.org/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Zdroje mapy
+                </a>
+
+            </p>
+
+
+            <p class="site-footer__copyright">
+                &copy; 2026 Sima Aqili
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- Leaflet JavaScript -->
+
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    ></script>
+
+
+    <!-- Own JavaScript -->
+
+    <script src="../js/script.js"></script>
+
+</body>
+
+</html>
